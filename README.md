@@ -7,8 +7,8 @@ I think it would take me some time to aquire the ones that I need.
 The algorithm will be built purely on C++ from scratch.
 
 Finish might be overly delayed because of my Exams.
+
 *I'm guessing it will be about being somewhere around 15 monthes.*
-As I pretty dont have much enough time.
 
 
 ## 1. Utilization
