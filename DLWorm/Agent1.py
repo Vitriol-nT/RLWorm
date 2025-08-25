@@ -1,5 +1,3 @@
-#Agent 1 (mechanical)
-
 from Module import *
 import math
 import random
@@ -9,9 +7,6 @@ F1 = food(5,4)
 F1.placement()
 F2 = food(10, 10)
 F2.placement()
-
-#We need basic informations. Where the current location is, the wall is, and such as where the food is
-#and which one is close etc.
 
 #Food1Position = [F1.pointxf, F1.pointyf]
 #Food2position = [F2.pointxf, F2.pointyf]
@@ -34,7 +29,30 @@ class agent1:
     else:
       self.Objective = random.randint(1, 2)
 
-  #And our little worm has to move for its objectives through dangerous things.
-  #but first, he needs to see things.
-  def worm_vision(self):
+  #Following vector for food
+  def setVector(self):
+    if self.Objective == 1:
+      directionVector = [(F1.pointxf - self.pointx), (F1.pointyf - self.pointy)]
+      endPoint = [F1.pointxf, F1.pointyf]
+    elif self.Objective == 2:
+      directionVector = [(F2.pointxf - self.pointx), (F2.pointyf - self.pointy)]
+      endPoint = [F2.pointxf, F2.pointyf]
+  
+  #Follow the vector and evade the collision with its body
+  def action():
+    #its movement behavior should match the vector (the line's slope.)
+    directionSlope = ((directionVector[0])/directionVector[1])
+    print(f"Selected Objective Food{self.Objective},")
+    print(f"\nGiven Guidng Line; y = {directionSlope}(x-{self.pointx})+{self.pointy}")
 
+    #it hits moves to fit the line
+    #we need to define numbers to match string direction styles.
+    """ [u, d, l, r] = [1, 2, 3, 4] """
+    #with the set of moves.
+
+    if directionSlope > 0:
+      pass
+    else:
+      pass
+
+      
