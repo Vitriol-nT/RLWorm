@@ -23,7 +23,14 @@ it wouldn't be able to read your controls.
 or to the wall etc. I know it's just that i didn't put the context of
 direction enough in the Module.py but I'll probably fix it on the next update)
 
+---
 ## 2. Structure
+**Agent1.py**: Agent1 is driven by set of mechanical principles. Without any form of intelligence.
+It seeks the closest food it has from the head, and works in very structed forms, which may show limitations
+on flexibility or reaching the high scores. Avoids walls, 
+
+**Agent2.py**: Agent2 is DL model. (not yet made)
+
 ---
 
 ## 3. Comments
