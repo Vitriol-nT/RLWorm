@@ -40,9 +40,30 @@ class agent1:
   
   #Follow the vector and evade the collision with its body
   def action():
-    #its movement behavior should match the vector (the line's slope.)
+    self.movement_array = []
+    ma = self.movement_array
+    #its movement behavior should match the vector
+    #we need to define numbers to match string direction styles.
+    """ [u, d, l, r] = [1, 2, 3, 4] """
+    #with the set of moves.
+    #probalistic approach
+    def prob(z):
+      math.exp(-0.5*z**2)
 
-    #I think  probalistic action would be ok. It may generate variety
+    #relative movement importance
+    ti = math.abs(directionVector[0]) + math.abs(directionVector[1]) #Total Importance (ti)
+    ix = directionVector[0]/ti #importance x
+    iy = directionVector[1]/ti
 
-
+    tendx = prob(ix*3)
+    tendy = prob(iy*3)
+    if tendx > 0 and tendy > 0:
+      if tendx > tendy:
+        ma.append(1)
+      elif tendx < tendy:
+        ma.append(2)
+      elif tendx == tendx:
+        ma.append(4)
+    elif tendx < 0 and tendy < 0:
+      pass
       
