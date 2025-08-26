@@ -41,18 +41,8 @@ class agent1:
   #Follow the vector and evade the collision with its body
   def action():
     #its movement behavior should match the vector (the line's slope.)
-    directionSlope = ((directionVector[0])/directionVector[1])
-    print(f"Selected Objective Food{self.Objective},")
-    print(f"\nGiven Guidng Line; y = {directionSlope}(x-{self.pointx})+{self.pointy}")
 
-    #it hits moves to fit the line
-    #we need to define numbers to match string direction styles.
-    """ [u, d, l, r] = [1, 2, 3, 4] """
-    #with the set of moves.
+    #I think  probalistic action would be ok. It may generate variety
 
-    if directionSlope > 0:
-      pass
-    else:
-      pass
 
       
