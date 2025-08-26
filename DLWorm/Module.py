@@ -50,18 +50,34 @@ class Worm:
             self.facing = "north"
             self.pointy -= 1
             DirectionTrue = [False, False, False, True]
+            if DirectionTrue[3] == True:
+                self.facing = "north"
+                self.pointy -= 1
+                DirectionTrue[False, False, False, True]
         elif input == "d" and DirectionTrue[3] == False:
             self.facing = "south"
             self.pointy += 1
             DirectionTrue = [False, False, True, False]
+            if DirecrionTrue[4] == True:
+                self.facing = "north"
+                self.pointy += 1
+                DirectionTrue = [False, False, True, False]
         elif input == "l" and DirectionTrue[0] == False:
             self.facing = "west"
             self.pointx -= 1
             DirectionTrue = [False, True, False, False]
+            if DirectionTrue[0] == True:
+                self.facing = "west"
+                self.pointx -= 1
+                DirectionTrue = [False, True, False, False]
         elif input == "r" and DirectionTrue[1] == False:
             self.facing = "east"
             self.pointx += 1
             DirectionTrue = [True, False, False, False]
+            if DirectionTrue[1] == True:
+                self.facing = "east"
+                self.pointx += 1
+                DirectionTrue = [True, False, False, False]
         else:
             End = True
         #at default, will be moving 1 pixel per .5 seconds for the heading direction
