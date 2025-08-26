@@ -55,15 +55,15 @@ class agent1:
     ix = directionVector[0]/ti #importance x
     iy = directionVector[1]/ti
 
-    tendx = prob(ix*3)
-    tendy = prob(iy*3)
-    if tendx > 0 and tendy > 0:
+    tendx = prob(3 - math.abs(ix*3))
+    tendy = prob(3 - math.abs(iy*3))
+    if ix > 0 and iy > 0:
       if tendx > tendy:
         ma.append(1)
       elif tendx < tendy:
         ma.append(2)
       elif tendx == tendx:
         ma.append(4)
-    elif tendx < 0 and tendy < 0:
+    elif ix < 0 and iy < 0:
       pass
       
