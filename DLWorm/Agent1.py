@@ -55,15 +55,51 @@ class agent1:
     ix = directionVector[0]/ti #importance x
     iy = directionVector[1]/ti
 
-    tendx = prob(3 - math.abs(ix*3))
-    tendy = prob(3 - math.abs(iy*3))
-    if ix > 0 and iy > 0:
-      if tendx > tendy:
-        ma.append(1)
-      elif tendx < tendy:
-        ma.append(2)
-      elif tendx == tendx:
-        ma.append(4)
-    elif ix < 0 and iy < 0:
-      pass
-      
+    tendx = prob(1 - math.abs(ix*1))
+    tendy = prob(1 - math.abs(iy*1))
+
+    #SelfBody evasion
+    readxp = []
+    readxm = []
+    readyp = []
+    readym = []
+
+    for i in 2:
+      readxp.append(place[self.pointx + (i+1), self.pointy])
+      readxm.append(place[self.pointx - (i+1), self.pointy])
+    for j in 2:
+      readyp.append(place[self.pointx, self.pointy + (j+1)])
+      readym.append(place[self.pointx, self.pointy - (j+1)])
+    #weld the possiblities together
+    def essence():
+      #body evasion
+
+      try:
+        #I will make it have tendency to move right
+        quadrants = {
+          (1, 1): [1, 4],
+          (-1, -1): [2, 3],
+          (1, -1): [2, 4],
+          (-1, 1): [1, 3]
+        }
+        keyQ = (1 if ix >= 0 else -1, 1 if iy >= 0 else -1)
+        outcomes = quadrants[keyQ]
+
+        """ [u, d, l, r] = [1, 2, 3, 4] """
+        decision = {
+          [1,4]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0]),
+          [2,3]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0]),
+          [2,4]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0]),
+          [1,3]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0])
+        }
+        KeyD = outcomes
+      except:
+        print("Error occured. Happens mostly because data went out of range. [0-19, 0-19].\n This will be counted as death")
+        End = True
+    #Wall evasion
+
+
+    #recalling objective and setvector
+
+    #polishing
+  return ma
