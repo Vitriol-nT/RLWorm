@@ -8,9 +8,6 @@ F1.placement()
 F2 = food(10, 10)
 F2.placement()
 
-#Food1Position = [F1.pointxf, F1.pointyf]
-#Food2position = [F2.pointxf, F2.pointyf]
-
 class agent1:
   def __init__(self):
     self.pointx = W1.pointx
