@@ -32,11 +32,11 @@ class agent1:
   #Following vector for food
   def setVector(self):
     if self.Objective == 1:
-      directionVector = [(F1.pointxf - self.pointx), (F1.pointyf - self.pointy)]
-      endPoint = [F1.pointxf, F1.pointyf]
+      self.directionVector = [(F1.pointxf - self.pointx), (F1.pointyf - self.pointy)]
+      self.endPoint = [F1.pointxf, F1.pointyf]
     elif self.Objective == 2:
-      directionVector = [(F2.pointxf - self.pointx), (F2.pointyf - self.pointy)]
-      endPoint = [F2.pointxf, F2.pointyf]
+      self.directionVector = [(F2.pointxf - self.pointx), (F2.pointyf - self.pointy)]
+      self.endPoint = [F2.pointxf, F2.pointyf]
   
   #Follow the vector and evade the collision with its body
   def action():
@@ -48,15 +48,15 @@ class agent1:
     #with the set of moves.
     #probalistic approach
     def prob(z):
-      math.exp(-0.5*z**2)
+      return math.exp(-0.5*z**2)
 
     #relative movement importance
-    ti = math.abs(directionVector[0]) + math.abs(directionVector[1]) #Total Importance (ti)
-    ix = directionVector[0]/ti #importance x
-    iy = directionVector[1]/ti
+    ti = math.abs(self.directionVector[0]) + math.abs(self.directionVector[1]) #Total Importance (ti)
+    ix = self.directionVector[0]/ti #importance x
+    iy = self.directionVector[1]/ti
 
-    tendx = prob(1 - math.abs(ix*1))
-    tendy = prob(1 - math.abs(iy*1))
+    tendx = prob(1 - abs(ix*1))
+    tendy = prob(1 - abs(iy*1))
 
     #SelfBody evasion
     readxp = []
@@ -73,6 +73,9 @@ class agent1:
     #weld the possiblities together
     def essence():
       #body evasion
+      body_detect = {
+
+      }
 
       try:
         #I will make it have tendency to move right
@@ -84,15 +87,8 @@ class agent1:
         }
         keyQ = (1 if ix >= 0 else -1, 1 if iy >= 0 else -1)
         outcomes = quadrants[keyQ]
-
         """ [u, d, l, r] = [1, 2, 3, 4] """
-        decision = {
-          [1,4]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0]),
-          [2,3]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0]),
-          [2,4]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0]),
-          [1,3]: ma.append(random.choices(outcomes, weights=[math.abs(iy), math.abs(ix)])[0])
-        }
-        KeyD = outcomes
+        ma.append(random.choices(outcomes, weights=[abs(iy), abs(ix)])[0])
       except:
         print("Error occured. Happens mostly because data went out of range. [0-19, 0-19].\n This will be counted as death")
         End = True
@@ -102,4 +98,4 @@ class agent1:
     #recalling objective and setvector
 
     #polishing
-  return ma
+    return ma
