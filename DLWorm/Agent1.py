@@ -39,7 +39,7 @@ class agent1:
       self.endPoint = [F2.pointxf, F2.pointyf]
   
   #Follow the vector and evade the collision with its body
-  def action():
+  def action(self):
     self.movement_array = []
     ma = self.movement_array
     #its movement behavior should match the vector
@@ -51,7 +51,7 @@ class agent1:
       return math.exp(-0.5*z**2)
 
     #relative movement importance
-    ti = math.abs(self.directionVector[0]) + math.abs(self.directionVector[1]) #Total Importance (ti)
+    ti = abs(self.directionVector[0]) + abs(self.directionVector[1]) #Total Importance (ti)
     ix = self.directionVector[0]/ti #importance x
     iy = self.directionVector[1]/ti
 
@@ -64,10 +64,10 @@ class agent1:
     readyp = []
     readym = []
 
-    for i in 2:
+    for i in range(2):
       readxp.append(place[self.pointx + (i+1), self.pointy])
       readxm.append(place[self.pointx - (i+1), self.pointy])
-    for j in 2:
+    for j in range(2):
       readyp.append(place[self.pointx, self.pointy + (j+1)])
       readym.append(place[self.pointx, self.pointy - (j+1)])
     #weld the possiblities together
