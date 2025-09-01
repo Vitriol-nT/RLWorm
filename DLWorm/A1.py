@@ -2,22 +2,20 @@ from Module import *
 import math
 import random
 
-W1 = Worm(3, 3)
-F1 = food(5,4)
-F1.placement()
-F2 = food(10, 10)
-F2.placement()
+#Food1Position = [F1.pointxf, F1.pointyf]
+#Food2position = [F2.pointxf, F2.pointyf]
 
 class agent1:
-  def __init__(self):
-    self.pointx = W1.pointx
-    self.pointy = W1.pointy
+  def __init__(self, W1, F1, F2):
+    self.W1 = W1
+    self.F1= F1
+    self.F2 = F2
     self.Objective = 1
   
   #This guy needs to determine which one to eat.
   def calculateDistance(self):
-    lengthF1 = math.sqrt((self.pointx - F1.pointxf)**2 + (self.pointy - F1.pointyf)**2)
-    lengthF2 = math.sqrt((self.pointx - F2.pointxf)**2 + (self.pointy - F2.pointyf)**2)
+    lengthF1 = math.sqrt((self.W1.pointx - self.F1.pointxf)**2 + (self.W1.pointy - self.F1.pointyf)**2)
+    lengthF2 = math.sqrt((self.W1.pointx - self.F2.pointxf)**2 + (self.W1.pointy - self.F2.pointyf)**2)
 
     if (lengthF1 > lengthF2):
       self.Objective = 1
@@ -29,14 +27,14 @@ class agent1:
   #Following vector for food
   def setVector(self):
     if self.Objective == 1:
-      self.directionVector = [(F1.pointxf - self.pointx), (F1.pointyf - self.pointy)]
-      self.endPoint = [F1.pointxf, F1.pointyf]
+      self.directionVector = [(self.F1.pointxf - self.W1.pointx), (self.F1.pointyf - self.W1.pointy)]
+      self.endPoint = [self.F1.pointxf, self.F1.pointyf]
     elif self.Objective == 2:
-      self.directionVector = [(F2.pointxf - self.pointx), (F2.pointyf - self.pointy)]
-      self.endPoint = [F2.pointxf, F2.pointyf]
+      self.directionVector = [(self.F2.pointxf - self.W1.pointx), (self.F2.pointyf - self.W1.pointy)]
+      self.endPoint = [self.F2.pointxf, self.F2.pointyf]
   
   #Follow the vector and evade the collision with its body
-  def action(self):
+  def action():
     self.movement_array = []
     ma = self.movement_array
     #its movement behavior should match the vector
@@ -48,7 +46,7 @@ class agent1:
       return math.exp(-0.5*z**2)
 
     #relative movement importance
-    ti = abs(self.directionVector[0]) + abs(self.directionVector[1]) #Total Importance (ti)
+    ti = math.abs(self.directionVector[0]) + math.abs(self.directionVector[1]) #Total Importance (ti)
     ix = self.directionVector[0]/ti #importance x
     iy = self.directionVector[1]/ti
 
@@ -61,19 +59,25 @@ class agent1:
     readyp = []
     readym = []
 
-    for i in range(2):
-      readxp.append(place[self.pointx + (i+1), self.pointy])
-      readxm.append(place[self.pointx - (i+1), self.pointy])
-    for j in range(2):
-      readyp.append(place[self.pointx, self.pointy + (j+1)])
-      readym.append(place[self.pointx, self.pointy - (j+1)])
+    for i in 2:
+      readxp.append(place[self.W1.pointx + (i+1), self.W1.pointy])
+      readxm.append(place[self.W1.pointx - (i+1), self.W1.pointy])
+    for j in 2:
+      readyp.append(place[self.W1.pointx, self.W1.pointy + (j+1)])
+      readym.append(place[self.W1.pointx, self.W1.pointy - (j+1)])
     #weld the possiblities together
     def essence():
       #body evasion
-      body_detect = {
-
-      }
-
+      if max(readxp) == 1:
+        ix += 1
+      elif max(readxm) == 1:
+        ix -= 2
+      elif max(readyp) == 1:
+        iy = 1
+      elif max(readym) == 1:
+        iy -= 2
+      else:
+        pass
       try:
         #I will make it have tendency to move right
         quadrants = {
@@ -91,8 +95,26 @@ class agent1:
         End = True
     #Wall evasion
 
-
     #recalling objective and setvector
 
     #polishing
-    return ma
+    return self.movement_array
+
+W1 = Worm(3, 3)
+F1 = food(5,4)
+F1.placement()
+F2 = food(10, 10)
+F2.placement()
+
+Sanek = agent1(W1, F1, F2)
+
+agent1.calculateDistance()
+agent1.setVector()
+agent1.action()
+
+for i in len(agent1.movement_array):
+  agent1.calculateDistance()
+  agent1.setVector()
+  agent1.action() 
+
+print(agent1.movement_array)
