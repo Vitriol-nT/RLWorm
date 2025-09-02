@@ -11,6 +11,8 @@ class agent1:
     self.F1= F1
     self.F2 = F2
     self.Objective = 1
+    self.End = False
+    self.movement_array = []
   
   #This guy needs to determine which one to eat.
   def calculateDistance(self):
@@ -108,13 +110,26 @@ F2.placement()
 
 Sanek = agent1(W1, F1, F2)
 
-agent1.calculateDistance()
-agent1.setVector()
-agent1.action()
+def interpreter(array_in, i):
+  dictionary = {
+    1: "u",
+    2: "d",
+    3: "l",
+    4: "r",
+  }
+  out = dictionary[array_in[i]]
+  return out
 
-for i in len(agent1.movement_array):
-  agent1.calculateDistance()
-  agent1.setVector()
-  agent1.action() 
+while (Sanek.End == False):
+  i = 0
+  Sanek.calculateDistance()
+  Sanek.setVector()
+  Sanek.action()
+  move = interpreter(Sanek.movement_array, i)
+  W1.move(move)
+  F1.eat()
+  F2.eat()
+  i += 1
 
-print(agent1.movement_array)
+  print(Sanek.movement_array)
+
