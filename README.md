@@ -1,15 +1,9 @@
 # Building Genetic Algorithm from Scratch
 
 Hello. This probably is going to be my biggest project ever.
-It will involve techniques of Genetic Algorithms.
-For now (Aug, 17, 2025) since lack of my skills now
-I think it would take me some time to aquire the ones that I need.
-The algorithm will be built purely on C++ from scratch.
+It will involve techniques of Reinforcement learnings.
 
 Finish might be overly delayed because of my Exams.
-
-*I'm guessing it will be about being somewhere around 15 monthes.*
-
 
 ## 1. Utilization
 It's primitive now.
@@ -25,13 +19,19 @@ direction enough in the Module.py but I'll probably fix it on the next update)
 
 ---
 ## 2. Structure
-**Agent1.py**: Agent1 is driven by set of mechanical principles. Without any form of intelligence.
+**A1.py**: Agent1 is driven by set of mechanical principles. Without any form of intelligence.
 It seeks the closest food it has from the head, and works in very structed forms, which may show limitations
 on flexibility or reaching the high scores. Avoids walls, 
 
-**A2.cpp**: Agent2 is DL model. (not yet made)
+**A2.py**: Agent2 is DL model. (not yet made)
 
 ---
 
 ## 3. Comments
+**1.** It responds to user input. As player input increases, the pre-recorded move of AI will be represented in corresponding place in the movement array.
+A1 is rough sketch of logics for deeply understanding how all these should be applied like. Although the logic isn't really done, I would keep that as my
+field of orignal thoughts. Furthermore the A1 is not even gonna be used for application.
+
+**2.** for now this is it.
+
 ---
