@@ -51,7 +51,7 @@ h1 {
 
 .game > h1 {
   font-family: "Space Mono", monospace;
-  font-size: 120%;
+  font-size: 100%;
   font-weight: bold;
   padding: 1.5%;
 }
@@ -106,4 +106,10 @@ h1 {
 .cell.red {
   background-color: red;
   transition-delay: 0.25s;
+}
+
+.game > .score {
+  font-family: "Space Mono", monospace;
+  font-weight: lighter;
+  font-size: 75%;
 }
