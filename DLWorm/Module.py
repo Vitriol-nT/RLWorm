@@ -38,12 +38,14 @@ class Worm:
         self.facing = "south"
         self.historyy = []
         self.historyx = []
+        self.End = False
         #facing downwards at base.
+    
+    def death(self):
+        self.End = True
 
     def moving(self, input):
         DirectionTrue = [False, False, False, False]
-        global End
-        End = False
         #East, West, South, North
         #setting the facing side
         #cannot go through previous move selections
@@ -63,24 +65,20 @@ class Worm:
             self.facing = "east"
             self.pointx += 1
             DirectionTrue = [True, False, False, False]
-        else:
-            End = True
         #at default, will be moving 1 pixel per .5 seconds for the heading direction
 
         if self.pointy < 0 or self.pointy > 19 or self.pointx < 0 or self.pointx > 19:
-            End = True
+            self.death()
         
         if self.position == 1:
-            End = True
-        else:
-            pass
+            self.death()
 
     def drawing(self):
         #The display will be on a web application. Only code for value change 0 to 1
         #move the head first, then rest will be tracing the parts
         self.historyx.append(self.pointx)
         self.historyy.append(self.pointy)
-
+        
         for i in range(self.length):
             place[self.historyy[len(self.historyy) - 1 - i]][self.historyx[len(self.historyx) - 1 - i]] = 1
             place[self.historyy[len(self.historyy) - self.length - 1]][self.historyx[len(self.historyx) - self.length - 1]] = 0
