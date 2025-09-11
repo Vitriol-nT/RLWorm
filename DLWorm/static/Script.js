@@ -1,6 +1,9 @@
 let playerDirection = null;
+let gameEnded = false;
 
 document.addEventListener('keydown', (event) => {
+  if (gameEnded) return;
+
   switch (event.key) {
     case 'w': case 'ArrowUp': playerDirection = 'u'; break;
     case 'a': case 'ArrowLeft': playerDirection = 'l'; break;
@@ -22,7 +25,16 @@ function updateGame() {
     .then(data => {
       renderPlayerGrid(data.place);
       document.querySelector('.score').textContent = `score: ${data.score}`;
-    });
+      return fetch('/finish');
+    })
+    .then(res => res.json())
+    .then(endData => {
+      if (endData.End) {
+        gameEnded = true;
+        document.querySelector('.score').textContent += " - GAME OVER";
+      }
+    })
+    .catch(err => console.error(err));
 }
 
 function renderPlayerGrid(place) {
@@ -46,6 +58,5 @@ function renderPlayerGrid(place) {
     }
   }
 }
-
 
 setInterval(updateGame, 100);
