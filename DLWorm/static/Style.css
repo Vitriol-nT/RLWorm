@@ -1,8 +1,5 @@
 body {
   background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='-100 -100 200 200'%0A%3E%3Cpath d=' M -60,50 Q 40,-50 40,-50' fill='none' stroke='black' stroke-width='10' /%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 5px;
   padding: 2%;
 }
 
@@ -23,8 +20,13 @@ h1 {
   text-align: center;
   z-index: 100;
   position: relative;
-  background-color: white;
   padding: 2%;
+  background-color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 .context > .gl{
   color: #34D399;
@@ -34,12 +36,24 @@ h1 {
   position: absolute;
   z-index: 50;
   top: 40%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  border-radius: 10px;
+  left: 5%;
+  width: 50%;
+  height: 50%;
+  padding: 2%;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
+  overflow: hidden;
+}
+
+.game > h1 {
+  font-family: "Space Mono", monospace;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 1.5%;
 }
 
 .player {
@@ -50,6 +64,30 @@ h1 {
   margin: 5%;
 }
 
+.AI {
+  position: absolute;
+  z-index: 50;
+  top: 40%;
+  right: 5%;
+  width: 25%;
+  height: 50%;
+  padding: 2%;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  overflow: hidden;
+}
+
+.AI > h1 {
+  font-family: "Space Mono", monospace;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 1.5%;
+}
+
 .cell {
   width: 15px;
   height: 15px;
@@ -57,12 +95,15 @@ h1 {
 
 .cell.black {
   background-color: black;
+  transition-delay: 0.25s;
 }
 
 .cell.white {
   background-color: #34D399;
+  transition-delay: 0.25s;
 }
 
 .cell.red {
   background-color: red;
+  transition-delay: 0.25s;
 }
