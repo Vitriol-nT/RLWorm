@@ -37,7 +37,6 @@ def get_state():
     score = F1.score + F2.score
 
     if W1.End:
-        # make "place" full of 1s
         h = len(place)
         w = len(place[0]) if h > 0 else 0
         filled = [[2 for _ in range(w)] for _ in range(h)]
