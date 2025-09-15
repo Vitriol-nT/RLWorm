@@ -64,7 +64,7 @@ function renderPlayerGrid(place) {
   }
 }
 
-// update every 500ms until game over
+// update every 0.1s until game over
 const gameLoop = setInterval(() => {
   if (gameEnded) {
     clearInterval(gameLoop);
