@@ -11,15 +11,20 @@ document.addEventListener('keydown', (event) => {
     case 'd': case 'ArrowRight': playerDirection = 'r'; break;
     default: return;
   }
-
-  fetch('/move', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ direction: playerDirection })
-  });
 });
 
 function updateGame() {
+  if (gameEnded) return;
+
+  // keep moving in the last chosen direction
+  if (playerDirection) {
+    fetch('/move', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ direction: playerDirection })
+    }).catch(err => console.error(err));
+  }
+
   fetch('/state')
     .then(res => res.json())
     .then(data => {
@@ -59,4 +64,11 @@ function renderPlayerGrid(place) {
   }
 }
 
-setInterval(updateGame, 100);
+// update every 500ms until game over
+const gameLoop = setInterval(() => {
+  if (gameEnded) {
+    clearInterval(gameLoop);
+    return;
+  }
+  updateGame();
+}, 100);
