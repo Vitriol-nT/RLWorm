@@ -1,4 +1,5 @@
 #with time library exported when used in code, make the delay and forever loop to be on the course
+#COPYRIGHT: Vitriol-nT, 2025, all rights reserved
 import random
 
 place = [
@@ -51,26 +52,35 @@ class Worm:
         #cannot go through previous move selections
         if input == "u" and DirectionTrue[2] == False:
             self.facing = "north"
-            self.pointy -= 1
+            if place[self.pointy - 1][self.pointx] == 1:
+                self.death()
+            else:
+                self.pointy -= 1
             DirectionTrue = [False, False, False, True]
         elif input == "d" and DirectionTrue[3] == False:
             self.facing = "south"
-            self.pointy += 1
+            if place[self.pointy + 1][self.pointx] == 1:
+                self.death()
+            else:
+                self.pointy += 1
             DirectionTrue = [False, False, True, False]
         elif input == "l" and DirectionTrue[0] == False:
             self.facing = "west"
-            self.pointx -= 1
+            if place[self.pointy][self.pointx - 1] == 1:
+                self.death()
+            else:
+                self.pointx -= 1
             DirectionTrue = [False, True, False, False]
         elif input == "r" and DirectionTrue[1] == False:
             self.facing = "east"
-            self.pointx += 1
+            if place[self.pointy][self.pointx + 1] == 1:
+                self.death()
+            else:
+                self.pointx += 1
             DirectionTrue = [True, False, False, False]
         #at default, will be moving 1 pixel per .5 seconds for the heading direction
 
         if self.pointy < 0 or self.pointy > 19 or self.pointx < 0 or self.pointx > 19:
-            self.death()
-        
-        if self.position == 1:
             self.death()
 
     def drawing(self):
