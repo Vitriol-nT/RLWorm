@@ -1,4 +1,4 @@
-# Building Genetic Algorithm from Scratch
+# Building Action Agent with Reinforcement Learning from Scratch
 
 Hello. This probably is going to be my biggest project ever.
 It will involve techniques of Reinforcement learnings.
@@ -12,10 +12,6 @@ For your control, you will use W-A-S-D keys.
 If you're keyboard was switched to another language, it wouldn't work.
 For example, if your keyboard is set to be Korean, resulting 'WASD' to be 'ㅈㅁㄴㅇ',
 it wouldn't be able to read your controls.
-
-(For now it moves literally every direction regardless of the snake's body
-or to the wall etc. I know it's just that i didn't put the context of
-direction enough in the Module.py but I'll probably fix it on the next update)
 
 ---
 ## 2. Structure
