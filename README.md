@@ -26,9 +26,9 @@ on flexibility or reaching the high scores. Avoids walls,
 
 ## 3. Comments
 **1.** It responds to user input. As player input increases, the pre-recorded move of AI will be represented in corresponding place in the movement array.
-A1 is rough sketch of logics for deeply understanding how all these should be applied like. Although the logic isn't really done, I would keep that as my
-field of orignal thoughts. Furthermore the A1 is not even gonna be used for application.
 
-**2.** for now this is it.
+**2.** The game will start as soon as you start giving the application a input.
 
 ---
+
+https://github.com/Vitriol-nT/RLWorm/issues/1#issue-3421098382
