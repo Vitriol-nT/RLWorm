@@ -2,6 +2,7 @@
 
 Hello. This probably is going to be my biggest project ever.
 It will involve techniques of Reinforcement learnings.
+I think applying deep Q-learning would be suitable.
 
 Finish might be overly delayed because of my Exams.
 
