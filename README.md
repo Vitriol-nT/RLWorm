@@ -24,6 +24,7 @@ on flexibility or reaching the high scores. Avoids walls,
 
 ---
 
+
 ## 3. Comments
 **1.** It responds to user input. As player input increases, the pre-recorded move of AI will be represented in corresponding place in the movement array.
 
@@ -31,4 +32,7 @@ on flexibility or reaching the high scores. Avoids walls,
 
 ---
 
+[
 https://github.com/Vitriol-nT/RLWorm/issues/1#issue-3421098382
+](https://github.com/user-attachments/assets/df496e81-3725-4d37-a77f-83bd036c6483
+)
