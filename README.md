@@ -18,7 +18,7 @@ it wouldn't be able to read your controls.
 ## 2. Structure
 **A1.py**: Agent1 is driven by set of mechanical principles. Without any form of intelligence.
 It seeks the closest food it has from the head, and works in very structed forms, which may show limitations
-on flexibility or reaching the high scores. Avoids walls, 
+on flexibility or reaching the high scores. (removed now)
 
 **A2.py**: Agent2 is DL model. (not yet made)
 
