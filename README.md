@@ -1,10 +1,7 @@
 # Building Action Agent with Reinforcement Learning from Scratch
 
 Hello. This probably is going to be my biggest project ever.
-It will involve techniques of Reinforcement learnings.
-I think applying deep Q-learning would be suitable.
-
-Finish might be overly delayed because of my Exams.
+Q-learning will be applied
 
 ## 1. Utilization
 It's primitive now.
