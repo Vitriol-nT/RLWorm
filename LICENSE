@@ -1,2 +1,8 @@
 © 2025 Vitriol-nT. All rights reserved.
 Contact: minyeopkim.email@gmail.com
+
+Agent2.py is adapted from the PyTorch DQN tutorial:
+https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+Original code copyright (c) 2017, PyTorch contributors (BSD 3-Clause License).
+
+Modifications and adaptations by Vitriol-nT, 2025.
