@@ -1,7 +1,7 @@
-# Building Action Agent with Reinforcement Learning from Scratch
+# Building Action Agent with Reinforcement Learning
 
 Hello. This probably is going to be my biggest project ever.
-Q-learning will be applied
+DQN is applied based on modifying PyTorch DQN example code.
 
 ## 1. Utilization
 It's primitive now.
