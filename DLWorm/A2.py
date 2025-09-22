@@ -27,9 +27,9 @@ class DQN(nn.Module):
         super(DQN, self).__init__()
         self.fc = nn.Sequential(
             nn.Linear(state_size, 64),
-            nn.ReLU(),
+            nn.sigmoid(),
             nn.Linear(64, 64),
-            nn.ReLU(),
+            nn.sigmoid(),
             nn.Linear(64, action_size)
         )
 
