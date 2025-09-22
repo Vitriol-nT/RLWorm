@@ -2,28 +2,9 @@
 #COPYRIGHT: Vitriol-nT, 2025, all rights reserved
 import random
 
-place = [
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-]
+GRIDSIZE = 20
+
+place = [[0 for _ in range(20)] for _ in range(20)]
 
 def placefunction():
     n1 = random.randint(0, 19)
@@ -115,3 +96,61 @@ class food:
             self.placement()
             worm.length += 1
 
+#Env setting
+import numpy as np
+class ActionSpace:
+            def __init__(self):
+                self.n = 4
+            def sample(self):
+                return random.randint(0, self.n - 1)
+
+class WormEnv:
+    def __init__(self):
+        self.action_space = type('', (), {})()
+        self.action_space.n = 4
+        self.reset()  
+        self.action_space = ActionSpace()
+        self.reset()
+        self.worm = Worm()
+    
+    def reset(self):
+        global place
+        place = [[0 for _ in range(GRIDSIZE)] for _ in range(GRIDSIZE)]
+        self.worm = Worm(5, 5)
+        self.food1 = food(10, 10)
+        self.food1.placement()
+        self.food2 = food(5, 6)
+        self.food2.placement()
+        self.steps = 0
+        for _ in range(self.worm.length):
+            self.worm.historyy.append(self.worm.pointy)
+            self.worm.historyx.append(self.worm.pointx + 4 - _)
+        state = self._get_state()
+        return state, {}
+    
+    def step(self, action):
+        self.worm.moving(action)
+        self.food1.eat(self.worm)
+        self.food2.eat(self.worm)
+        self.worm.drawing()
+
+        reward = 1 if not self.worm.End else - 10
+        if self.worm.pointx == self.food1.pointxf and self.worm.pointy == self.food1.pointyf:
+            reward += 10
+        if self.worm.pointx == self.food2.pointxf and self.worm.pointy == self.food2.pointyf:
+            reward += 10
+        
+        self.steps += 1
+        done = self.worm.End or self.steps > 200
+
+        state = self._get_state()
+        return state, reward, done, False, {}
+
+    def _get_state(self):
+        return np.array(place, dtype=np.float32).flatten()
+    
+    def render(self):
+        for row in place:
+            print("".join(str(c) for c in row))
+        print()
+        
