@@ -206,4 +206,5 @@ plot_durations(show_result=True)
 plt.ioff()
 plt.show()
 
-#result is: all_histories
+torch.save(policy_net.state_dict(), "policy_weights.pth")
+
