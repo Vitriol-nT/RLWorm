@@ -1,6 +1,8 @@
 # This code is adapted from PyTorch DQN tutorial:
 # https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 
+#this takes like 8 minutes to process what the hell
+
 from Module import WormEnv
 import math
 import random
