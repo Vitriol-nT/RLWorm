@@ -4,26 +4,26 @@ Hello. This probably is going to be my biggest project ever.
 DQN is applied based on modifying PyTorch DQN example code.
 
 ## 1. Utilization
-It's primitive now.
+
 In order to use, run app.py and run it on your local host.
 For your control, you will use W-A-S-D keys.
 If you're keyboard was switched to another language, it wouldn't work.
 For example, if your keyboard is set to be Korean, resulting 'WASD' to be 'ㅈㅁㄴㅇ',
 it wouldn't be able to read your controls.
+Also, in order to use the DQN, you must pre-calculate the .pth file so that it could run without additional process.
 
 ---
 ## 2. Structure
-**A1.py**: Agent1 is driven by set of mechanical principles. Without any form of intelligence.
-It seeks the closest food it has from the head, and works in very structed forms, which may show limitations
-on flexibility or reaching the high scores. (removed now)
+**A2**: is a DQL model. For the current settings, it has 2 hidden layers with 128 neurons size. Using Adam for optimizing. For training, it performs 500 episodes which takes 300 steps each.
+For current code, it has a kind of reward system which adds 10 steps after eating food at every episodes. It will probably good for improvements, but definitely will take longer
+to process. So, the uploaded policy weights map will be the one calculated without that logic.
 
-**A2.py**: Agent2 is DL model. (not yet made)
 
 ---
 
 
 ## 3. Comments
-**1.** It responds to user input. As player input increases, the pre-recorded move of AI will be represented in corresponding place in the movement array.
+**1.** The movement of AI will be following after your move. Which is live-action.
 
 **2.** The game will start as soon as you start giving the application a input.
 
