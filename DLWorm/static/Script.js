@@ -13,37 +13,49 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-function updateGame() {
+async function updateGame() {
   if (gameEnded) return;
 
-  // keep moving in the last chosen direction
-  if (playerDirection) {
-    fetch('/move', {
+  try {
+    if (playerDirection) {
+      await fetch('/move', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ direction: playerDirection })
+      });
+    }
+
+    const playerRes = await fetch('/state');
+    const playerData = await playerRes.json();
+    renderGrid('.player', playerData.place);
+    document.querySelector('.score').textContent = `score: ${playerData.score}`;
+
+    const aiRes = await fetch('/GetStateDQN', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ direction: playerDirection })
-    }).catch(err => console.error(err));
-  }
+      body: JSON.stringify({ DQNdirection: playerDirection })
+    });
+    if (aiRes.status !== 204) {
+      const aiData = await aiRes.json();
+      renderGrid('.Agent', aiData.AIPlace);
+      document.querySelector('.scoreAI').textContent = `score: ${aiData.AIScore}`;
+      console.log('AI moved:', aiData.AIMove);
+    }
 
-  fetch('/state')
-    .then(res => res.json())
-    .then(data => {
-      renderPlayerGrid(data.place);
-      document.querySelector('.score').textContent = `score: ${data.score}`;
-      return fetch('/finish');
-    })
-    .then(res => res.json())
-    .then(endData => {
-      if (endData.End) {
-        gameEnded = true;
-        document.querySelector('.score').textContent += " - GAME OVER";
-      }
-    })
-    .catch(err => console.error(err));
+    const endRes = await fetch('/finish');
+    const endData = await endRes.json();
+    if (endData.End) {
+      gameEnded = true;
+      document.querySelector('.score').textContent += " - GAME OVER";
+    }
+
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function renderPlayerGrid(place) {
-  const grid = document.querySelector('.player');
+function renderGrid(selector, place) {
+  const grid = document.querySelector(selector);
   grid.innerHTML = '';
 
   for (let y = 0; y < place.length; y++) {
@@ -51,20 +63,15 @@ function renderPlayerGrid(place) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
 
-      if (place[y][x] === 1) {
-        cell.classList.add('white');
-      } else if (place[y][x] === 2) {
-        cell.classList.add('red');
-      } else {
-        cell.classList.add('black');
-      }
+      if (place[y][x] === 1) cell.classList.add('white');
+      else if (place[y][x] === 2) cell.classList.add('red');
+      else cell.classList.add('black');
 
       grid.appendChild(cell);
     }
   }
 }
 
-// update every 0.1s until game over
 const gameLoop = setInterval(() => {
   if (gameEnded) {
     clearInterval(gameLoop);
