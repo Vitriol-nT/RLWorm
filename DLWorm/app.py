@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 from Module import *
+import numpy as np
+from A2 import ACTION_MAP, select_action, policy_net
+
+policy_net = DQN(n_observations, n_actions)
+policy_net.load_state_dict(torch.load("policy_weights.pth", map_location="cpu"))
+policy_net.eval()
 
 app = Flask(__name__)
 
@@ -45,6 +51,39 @@ def get_state():
         pass
 
     return jsonify({'place': place, 'score': score})
+
+#initializing settings for DQN
+from A2Module import *
+
+DQNW = DQNworm(10,9)
+DQNF1 = DQNfood()
+DQNF2 = DQNfood()
+DQNF1.placement()
+DQNF2.placement()
+for _ in range(DQNW.length):
+    DQNW.historyy.append(DQNW.pointy)
+    DQNW.historyx.append(DQNW.pointx + 4 - _)
+DQNW.drawing()
+
+@app.route('/GetStateDQN', methods=['POST'])
+def getting_state():
+    data = request.get_json()
+    DQNdirection = data.get('DQNdirection')
+
+    stateDQN = np.array(VirtualPlace, dtype=np.float32).flatten()
+    output = select_action(stateDQN)
+    if output is not None:
+        action_idx = int(output.item())
+        direction = ACTION_MAP[action_idx] 
+        DQNW.moving(direction)
+        DQNF1.eat(DQNW)
+        DQNF2.eat(DQNW)
+        DQNW.drawing()
+    
+    if DQNW.End:
+        return '', 204
+    
+    return jsonify({'AIPlace': VirtualPlace, 'AIScore': DQNscore, 'AIMove': direction})
 
 @app.route('/finish')
 def finish():
