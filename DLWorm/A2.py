@@ -1,8 +1,6 @@
 # This code is adapted from PyTorch DQN tutorial:
 # https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
 
-#this takes like 8 minutes to process what the hell
-
 from Module import WormEnv
 import math
 import random
@@ -117,8 +115,6 @@ def plot_durations(show_result=False):
         means = durations_t.unfold(0, 100, 1).mean(1).view(-1)
         means = torch.cat((torch.zeros(99), means))
         plt.plot(means.numpy())
-
-    plt.pause(0.001)
     if is_ipython:
         if not show_result:
             display.display(plt.gcf())
@@ -195,7 +191,7 @@ for i_episode in range(num_episodes):
 
         if done:
             episode_durations.append(t + 1)
-            plot_durations(100)
+            plot_durations(1)
             break
     all_histories.append(episode_history)
 
@@ -207,4 +203,3 @@ plt.ioff()
 plt.show()
 
 torch.save(policy_net.state_dict(), "policy_weights.pth")
-
