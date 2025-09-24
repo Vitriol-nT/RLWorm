@@ -134,15 +134,15 @@ class WormEnv:
         self.food1.eat(self.worm)
         self.food2.eat(self.worm)
         self.worm.drawing()
-
+        self.steps += 1
 
         reward = 0.1 if not self.worm.End else - 10
         if self.worm.pointx == self.food1.pointxf and self.worm.pointy == self.food1.pointyf:
             reward += 10
-            self.steps += 10
+            self.steps -= 10
         if self.worm.pointx == self.food2.pointxf and self.worm.pointy == self.food2.pointyf:
             reward += 10
-            self.steps += 10
+            self.steps -= 10
         
         done = self.worm.End or self.steps > 300
 
