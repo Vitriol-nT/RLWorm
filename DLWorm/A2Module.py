@@ -52,11 +52,9 @@ class DQNworm:
         if VirtualPlace[ny][nx] == 1:
             self.death()
             return
-        #at default, will be moving 1 pixel per .5 seconds for the heading direction
 
-    def get_state(self):
-        return np.array(VirtualPlace, dtype=np.float32).flatten()
-
+        # commit move
+        self.pointx, self.pointy = nx, ny
     def drawing(self):
         #The display will be on a web application. Only code for value change 0 to 1
         #move the head first, then rest will be tracing the parts
@@ -79,6 +77,9 @@ class DQNworm:
             # extra safety: only clear if indices valid
             if 0 <= tx < GRIDSIZE and 0 <= ty < GRIDSIZE:
                 VirtualPlace[ty][tx] = 0
+
+    def get_state(self):
+        return np.array(VirtualPlace, dtype=np.float32).flatten()
 
 class DQNfood:
     def __init__(self, pointxf, pointyf):
