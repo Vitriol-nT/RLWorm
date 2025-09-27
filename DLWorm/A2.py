@@ -158,10 +158,7 @@ if torch.cuda.is_available():
     num_episodes = 1000
 else:
     num_episodes = 200000
-    #note: wtf i wish i knew this early
-    #This is a complex system.
-    #building ones like this without CNN is very slow and unstable.
-
+    
 #Applied
 TrainDone = False
 for i_episode in range(num_episodes):
