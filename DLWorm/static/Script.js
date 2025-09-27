@@ -50,9 +50,12 @@ function renderPlayerGrid(place) {
       cell.classList.add('cell');
 
       if (place[y][x] === 1) {
-        cell.classList.add('white');
+        cell.classList.add('green');
       } else if (place[y][x] === 2) {
         cell.classList.add('red');
+      } 
+      else if (place[y][x] === 3) {
+        cell.classList.add('white');
       } else {
         cell.classList.add('black');
       }
@@ -108,9 +111,11 @@ function renderDQNGrid(VirtualPlace) {
       cell.classList.add('cell');
 
       if (VirtualPlace[y][x] === 1) {
-        cell.classList.add('white');
+        cell.classList.add('green');
       } else if (VirtualPlace[y][x] === 2) {
         cell.classList.add('red'); 
+      } else if (VirtualPlace[y][x] === 3) {
+        cell.classList.add('white');
       } else {
         cell.classList.add('black');
       }
