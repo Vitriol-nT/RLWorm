@@ -47,6 +47,7 @@ https://github.com/Vitriol-nT/RLWorm/issues/1#issue-3421098382
 <img width="1512" height="982" alt="Screenshot 2025-09-27 at 11 30 27 AM" src="https://github.com/user-attachments/assets/f1de3a38-65e2-4017-8631-5fd7d7fe41ac" />
 
 **Trained AI (It prioritizes longevity😅)**
+
 [
 https://github.com/Vitriol-nT/RLWorm/issues/2#issue-3460670478
 ](https://github.com/user-attachments/assets/a52f0a51-cec7-4116-8a98-54ca4655e70c
