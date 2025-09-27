@@ -49,7 +49,7 @@ class DQNworm:
             return
 
         # Check for self-collision on the target cell
-        if place[ny][nx] == 1:
+        if VirtualPlace[ny][nx] == 1:
             self.death()
             return
         #at default, will be moving 1 pixel per .5 seconds for the heading direction
@@ -62,11 +62,23 @@ class DQNworm:
         #move the head first, then rest will be tracing the parts
         self.historyx.append(self.pointx)
         self.historyy.append(self.pointy)
-        
+
+        hist_len = len(self.historyx)
+        n_body = min(self.length, hist_len)
+        for i in range(n_body):
+            hx = self.historyx[hist_len - 1 - i]
+            hy = self.historyy[hist_len - 1 - i]
+            VirtualPlace[hy][hx] = 1
+
         VirtualPlace[self.pointy][self.pointx] = 3
-        for i in range(self.length):
-            VirtualPlace[self.historyy[len(self.historyy) - 1 - i]][self.historyx[len(self.historyx) - 1 - i]] = 1
-            VirtualPlace[self.historyy[len(self.historyy) - self.length - 1]][self.historyx[len(self.historyx) - self.length - 1]] = 0
+        # clear the tail cell if history is longer than length
+        if hist_len > self.length:
+            tail_i = hist_len - self.length - 1
+            tx = self.historyx[tail_i]
+            ty = self.historyy[tail_i]
+            # extra safety: only clear if indices valid
+            if 0 <= tx < GRIDSIZE and 0 <= ty < GRIDSIZE:
+                VirtualPlace[ty][tx] = 0
 
 class DQNfood:
     def __init__(self, pointxf, pointyf):
