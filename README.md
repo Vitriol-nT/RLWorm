@@ -2,6 +2,7 @@
 
 Hello. This probably is going to be my biggest project ever.
 DQN is applied based on modifying PyTorch DQN example code.
+Displayed for my BIGDATA school club
 
 ## 1. Utilization
 
