@@ -70,6 +70,7 @@ ACTION_MAP = {
 }
 
 class DQN(nn.Module):
+
     def __init__(self, n_observations, n_actions):
         super(DQN, self).__init__()
         self.layer1 = nn.Linear(n_observations, 128)
@@ -87,15 +88,11 @@ policy_net.eval()
 
 from A2Module import VirtualPlace, DQNworm, DQNfood
 
-DW = DQNworm(10,10)
+DW = DQNworm(5,5)
 DF1 = DQNfood(4,4)
 DF2 = DQNfood(6,6)
 DF1.placement()
 DF2.placement()
-for _ in range(DW.length):
-    DW.historyy.append(DW.pointy)
-    DW.historyx.append(DW.pointx + 4 - _)
-DW.drawing()
 
 @app.route('/DQNmove', methods=['POST'])
 def DQNmovement():
@@ -118,7 +115,7 @@ def DQNmovement():
         DF1.eat(DW)
         DF2.eat(DW)
         DW.drawing()
-
+        print(VirtualPlace)
     return '', 204
 
 @app.route('/DQNstate')
