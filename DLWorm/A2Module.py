@@ -5,6 +5,7 @@ import random
 
 
 VirtualPlace = [[0 for _ in range(20)] for _ in range(20)]
+GRIDSIZE = 20
 
 def placefunction():
     n1 = random.randint(0, 19)
@@ -27,42 +28,31 @@ class DQNworm:
         self.End = True
 
     def moving(self, input):
-        DirectionTrue = [False, False, False, False]
-        #East, West, South, North
-        #setting the facing side
-        #cannot go through previous move selections
-        if input == "u" and DirectionTrue[2] == False:
+        # Compute intended next head position first, then check bounds and collisions
+        nx, ny = self.pointx, self.pointy
+        if input == "u":
             self.facing = "north"
-            if VirtualPlace[self.pointy - 1][self.pointx] == 1:
-                self.death()
-            else:
-                self.pointy -= 1
-            DirectionTrue = [False, False, False, True]
-        elif input == "d" and DirectionTrue[3] == False:
+            nx, ny = self.pointx, self.pointy - 1
+        elif input == "d":
             self.facing = "south"
-            if VirtualPlace[self.pointy + 1][self.pointx] == 1:
-                self.death()
-            else:
-                self.pointy += 1
-            DirectionTrue = [False, False, True, False]
-        elif input == "l" and DirectionTrue[0] == False:
+            nx, ny = self.pointx, self.pointy + 1
+        elif input == "l":
             self.facing = "west"
-            if VirtualPlace[self.pointy][self.pointx - 1] == 1:
-                self.death()
-            else:
-                self.pointx -= 1
-            DirectionTrue = [False, True, False, False]
-        elif input == "r" and DirectionTrue[1] == False:
+            nx, ny = self.pointx - 1, self.pointy
+        elif input == "r":
             self.facing = "east"
-            if VirtualPlace[self.pointy][self.pointx + 1] == 1:
-                self.death()
-            else:
-                self.pointx += 1
-            DirectionTrue = [True, False, False, False]
-        #at default, will be moving 1 pixel per .5 seconds for the heading direction
+            nx, ny = self.pointx + 1, self.pointy
 
-        if self.pointy < 0 or self.pointy > 19 or self.pointx < 0 or self.pointx > 19:
+        # Check bounds before indexing the grid to avoid IndexError and negative-wrap
+        if nx < 0 or nx >= GRIDSIZE or ny < 0 or ny >= GRIDSIZE:
             self.death()
+            return
+
+        # Check for self-collision on the target cell
+        if place[ny][nx] == 1:
+            self.death()
+            return
+        #at default, will be moving 1 pixel per .5 seconds for the heading direction
 
     def get_state(self):
         return np.array(VirtualPlace, dtype=np.float32).flatten()
@@ -73,6 +63,7 @@ class DQNworm:
         self.historyx.append(self.pointx)
         self.historyy.append(self.pointy)
         
+        VirtualPlace[self.pointy][self.pointx] = 3
         for i in range(self.length):
             VirtualPlace[self.historyy[len(self.historyy) - 1 - i]][self.historyx[len(self.historyx) - 1 - i]] = 1
             VirtualPlace[self.historyy[len(self.historyy) - self.length - 1]][self.historyx[len(self.historyx) - self.length - 1]] = 0
