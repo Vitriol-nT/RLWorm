@@ -31,6 +31,7 @@ to process. So, the uploaded policy weights map will be the one calculated witho
 ## 4. Gallery
 
 **User Input**
+
 [
 https://github.com/Vitriol-nT/RLWorm/issues/1#issue-3421098382
 ](https://github.com/user-attachments/assets/df496e81-3725-4d37-a77f-83bd036c6483
