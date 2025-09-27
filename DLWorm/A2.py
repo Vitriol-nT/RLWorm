@@ -62,11 +62,11 @@ class DQN(nn.Module):
         x = F.relu(self.layer2(x))
         return self.layer3(x)
 
-BATCH_SIZE = 128
+BATCH_SIZE = 10
 GAMMA = 0.99
-EPS_START = 0.99
-EPS_END = 0.05
-EPS_DECAY = 75000
+EPS_START = 0.95
+EPS_END = 0.09
+EPS_DECAY = 20000
 TAU = 0.005
 LR = 1e-4
 
@@ -79,7 +79,7 @@ target_net = DQN(n_observations, n_actions).to(device)
 target_net.load_state_dict(policy_net.state_dict())
 
 optimizer = optim.AdamW(policy_net.parameters(), lr=LR, amsgrad=True)
-memory = ReplayMemory(10000)
+memory = ReplayMemory(1000000)
 
 
 steps_done = 0
@@ -95,6 +95,10 @@ def select_action(state):
             return policy_net(state).max(1).indices.view(1, 1)
     else:
         return torch.tensor([[env.action_space.sample()]], device=device, dtype=torch.long)
+
+def select_action_greedy(state):
+    with torch.no_grad():
+        return policy_net(state).max(1).indices.view(1,1)
 
 
 episode_durations = []
@@ -148,24 +152,30 @@ def optimize_model():
     loss.backward()
     torch.nn.utils.clip_grad_value_(policy_net.parameters(), 100)
     optimizer.step()
+    print(loss)
 
 if torch.cuda.is_available():
     num_episodes = 1000
 else:
-    num_episodes = 500
+    num_episodes = 200000
+    #note: wtf i wish i knew this early
+    #This is a complex system.
+    #building ones like this without CNN is very slow and unstable.
 
 #Applied
-TrainDone = True
+TrainDone = False
 for i_episode in range(num_episodes):
     if TrainDone == True:
         break
+    else:
+        pass
     state, info = env.reset()
     state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+    print(f"Attempt#{i_episode}")
     for t in count():
         action = select_action(state)
         udlr_action = ACTION_MAP[action.item()]
-        episode_history.append(udlr_action)
-        observation, reward, terminated, truncated, _ = env.step(action.item())
+        observation, reward, terminated, truncated, _ = env.step(ACTION_MAP[action.item()])
         reward = torch.tensor([reward], device=device)
         done = terminated or truncated
 
@@ -199,3 +209,8 @@ print('Complete')
 
 if TrainDone == False:
     torch.save(policy_net.state_dict(), "policy_weights.pth")
+else:
+    pass    
+
+#TODO: Debug Note
+#check Attempt: 5881
