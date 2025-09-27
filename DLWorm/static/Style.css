@@ -112,7 +112,7 @@ h1 {
   transition-delay: 0.25s;
 }
 
-.cell.white {
+.cell.green {
   background-color: #34D399;
   transition-delay: 0.25s;
 }
@@ -120,6 +120,10 @@ h1 {
 .cell.red {
   background-color: red;
   transition-delay: 0.25s;
+}
+
+.cell.white {
+  background-color: whitesmoke;
 }
 
 .game > .score {
