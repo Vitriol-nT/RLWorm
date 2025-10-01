@@ -8,7 +8,7 @@ Displayed for my BIGDATA school club
 
 In order to use, run app.py and run it on your local host.
 For your control, you will use W-A-S-D keys.
-If you're keyboard was switched to another language, it wouldn't work.
+If your keyboard was switched to another language, it wouldn't work.
 For example, if your keyboard is set to be Korean, resulting 'WASD' to be 'ㅈㅁㄴㅇ',
 it wouldn't be able to read your controls.
 Also, in order to use the DQN, you must pre-calculate the .pth file so that it could run without additional process.
