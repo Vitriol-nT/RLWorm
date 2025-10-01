@@ -6,7 +6,8 @@ Displayed for my BIGDATA school club.
 
 Post script) Classical DQN 
 is not suitable for this kind of dynamic system. which is
-hugely chaotic for it to handle.
+hugely chaotic for it to handle. For informations about DQN, please check other online informations.
+
 
 ## 1. Utilization
 
@@ -17,7 +18,8 @@ For example, if your keyboard is set to be Korean, resulting 'WASD' to be 'ã…ˆã…
 it wouldn't be able to read your controls.
 Also, in order to use the DQN, you must pre-calculate the .pth file so that it could run without additional process.
 
-For informations about DQN, please check other online informations.
+For the restart, you have to first terminate the ongoing process of the local host. Then you should re-run the app.py
+in order to start again. If you will, please add reset button within JS.
 
 ---
 ## 2. Structure
@@ -28,10 +30,7 @@ For current code, it has a kind of reward system and system which removes 10 ste
 3. **Memory Buffer**: 1 mil
 4. **Neural Networks**: (If not modified) contains 4 layers. Input layer as n.observations which is 400, 2 hidden layers with each 128 neurons, and output layer with n.actions which is 4. Consisting one with 68356 parameters.
 
-
 **Module.py** if you checked the file histories, you'll know that suddenly the head is changed to 3. This is because not only you cannot tell whether the part is head or tail, but also I found out that DQN cannot also be able to tell which is head to tail since it all defined worm as 1. Also, since the original logic of body collison made error of "List out of index" and other sorts of reasons, the logic on here changed little bit too.
-
-
 
 ---
 
