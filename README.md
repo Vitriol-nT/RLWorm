@@ -2,7 +2,9 @@
 
 Hello. This probably is going to be my biggest project ever.
 DQN is applied based on modifying PyTorch DQN example code.
-Displayed for my BIGDATA school club. Also, Classical DQN 
+Displayed for my BIGDATA school club.
+
+Post script) Classical DQN 
 is not suitable for this kind of dynamic system. which is
 hugely chaotic for it to handle.
 
