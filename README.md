@@ -6,7 +6,7 @@ Displayed for my BIGDATA school club.
 
 Post script) Classical DQN 
 is not suitable for this kind of dynamic system. which is
-hugely chaotic for it to handle. For informations about DQN, please check other online informations.
+hugely chaotic for it to handle. For informations about DQN, please check other online sources.
 
 PSPS> MY MATES DIDNT EVEN PARTICIPATE IN THIS REPOSITORY AT ALL. I BUILT TS BRICK BY BRICK. ALL BY MYSELF 🗣️🔥
 
