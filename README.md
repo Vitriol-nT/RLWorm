@@ -9,6 +9,7 @@ is not suitable for this kind of dynamic system. which is
 hugely chaotic for it to handle. For informations about DQN, please check other online informations.
 
 PSPS> MY MATES DIDNT EVEN PARTICIPATE IN THIS REPOSITORY AT ALL. I BUILT TS BRICK BY BRICK. ALL BY MYSELF 🗣️🔥
+
 PSPS> 저작권은 저에게 있고 저만 제작에 참여했어요... 저 언더레이티드 개쎄게 된거 같은데;;; 김민엽 관심좀 가져주세요
 
 ## 1. Utilization
