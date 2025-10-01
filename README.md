@@ -13,13 +13,16 @@ For example, if your keyboard is set to be Korean, resulting 'WASD' to be 'ã…ˆã…
 it wouldn't be able to read your controls.
 Also, in order to use the DQN, you must pre-calculate the .pth file so that it could run without additional process.
 
+For informations about DQN, please check other online informations.
+
 ---
 ## 2. Structure
-**A2.py**: is a DQL model. For the current settings, it has 2 hidden layers with 128 neurons size. Using Adam for optimizing. For training, it performs 200k episodes which takes 200 steps each.
+**A2.py**: is a DQN model. For the current settings, it has 2 hidden layers with 128 neurons size. Using Adam for optimizing. For training, it performs 200k episodes which takes 200 steps each.
 For current code, it has a kind of reward system and system which removes 10 steps after eating food at every episodes. Finally, the uploaded policy weights map will be the one calculated without that logic.
 1. **Loss Function**: Mean Absolute Error function (L1loss)
 2. **Gradient Descent**: Adam
-3. **s**
+3. **Memory Buffer**: 1 mil
+4. **Neural Networks**: (If not modified) contains 4 layers. Input layer as n.observations which is 400, 2 hidden layers with each 128 neurons, and n.actions 4. Resulting in 68356 parameters.
 
 **Module.py** if you checked the file histories, you'll know that suddenly the head is changed to 3. This is because not only you cannot tell whether the part is head or tail, but also I found out that DQN cannot also be able to tell which is head to tail since it all defined worm as 1. Also, since the original logic of body collison made error of "List out of index" and other sorts of reasons, the logic on here changed little bit too.
 
