@@ -4,7 +4,7 @@ Hello. This probably is going to be my biggest project ever.
 DQN is applied based on modifying PyTorch DQN example code.
 Displayed for my BIGDATA school club.
 
-Post script) Classical DQN 
+Post script) it says that classical DQN 
 is not suitable for this kind of dynamic system. which is
 hugely chaotic for it to handle. For informations about DQN, please check other online sources.
 
