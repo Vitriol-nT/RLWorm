@@ -53,7 +53,7 @@ https://github.com/Vitriol-nT/RLWorm/issues/1#issue-3421098382
 **Training**
 <img width="1512" height="982" alt="Screenshot 2025-09-27 at 11 30 27 AM" src="https://github.com/user-attachments/assets/f1de3a38-65e2-4017-8631-5fd7d7fe41ac" />
 
-**Trained AI (It prioritizes longevity😅)**
+**Trained AI (bruh)**
 
 [
 https://github.com/Vitriol-nT/RLWorm/issues/2#issue-3460670478
