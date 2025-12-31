@@ -28,7 +28,6 @@ class DQNworm:
         self.End = True
 
     def moving(self, input):
-        # Compute intended next head position first, then check bounds and collisions
         nx, ny = self.pointx, self.pointy
         if input == "u":
             self.facing = "north"
@@ -43,17 +42,14 @@ class DQNworm:
             self.facing = "east"
             nx, ny = self.pointx + 1, self.pointy
 
-        # Check bounds before indexing the grid to avoid IndexError and negative-wrap
         if nx < 0 or nx >= GRIDSIZE or ny < 0 or ny >= GRIDSIZE:
             self.death()
             return
 
-        # Check for self-collision on the target cell
         if VirtualPlace[ny][nx] == 1:
             self.death()
             return
 
-        # commit move
         self.pointx, self.pointy = nx, ny
     def drawing(self):
         #The display will be on a web application. Only code for value change 0 to 1
