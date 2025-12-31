@@ -67,7 +67,6 @@ class Worm:
             tail_i = hist_len - self.length - 1
             tx = self.historyx[tail_i]
             ty = self.historyy[tail_i]
-            # extra safety: only clear if indices valid
             if 0 <= tx < GRIDSIZE and 0 <= ty < GRIDSIZE:
                 place[ty][tx] = 0
 
