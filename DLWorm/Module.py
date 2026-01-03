@@ -1,5 +1,5 @@
 #with time library exported when used in code, make the delay and forever loop to be on the course
-#COPYRIGHT: Aster1scks, 2025, all rights reserved
+#COPYRIGHT: Aster1scks, 2025, all rights reserved.
 import random
 
 GRIDSIZE = 20
