@@ -30,7 +30,9 @@ For current code, it has a kind of reward system and system which removes 10 ste
 3. **Memory Buffer**: 1 mil
 4. **Neural Networks**: (If not modified) contains 4 layers. Input layer as n.observations which is 400, 2 hidden layers with each 128 neurons, and output layer with n.actions which is 4. Consisting one with 68356 parameters.
 
-**Module.py** if you checked the file histories, you'll know that suddenly the head is changed to 3. This is because not only you cannot tell whether the part is head or tail, but also I found out that DQN cannot also be able to tell which is head to tail since it all defined worm as 1. Also, since the original logic of body collison made error of "List out of index" and other sorts of reasons, the logic on here changed little bit too.
+**Module.py**: if you checked the file histories, you'll know that suddenly the head is changed to 3. This is because not only you cannot tell whether the part is head or tail, but also I found out that DQN cannot also be able to tell which is head to tail since it all defined worm as 1. Also, since the original logic of body collison made error of "List out of index" and other sorts of reasons, the logic on here changed little bit too.
+
+**On file histories**: for now, the file change history is set to 123, but i accidentally once blew the whole repository away. So, this is actually more longer than that.
 
 ---
 
